@@ -3,6 +3,9 @@ using System.Drawing.Imaging;
 
 namespace Procedural_Caves
 {
+    /// <summary>
+    /// Runs from the Program.cs main - handles GUI interaction and board population/simulation.
+    /// </summary>
     public partial class Form1 : Form
     {
         Board board;
@@ -17,6 +20,9 @@ namespace Procedural_Caves
         private void SizeNud_ValueChanged(object sender, EventArgs e) { Generate(); }
         private void DensityNud_ValueChanged(object sender, EventArgs e) { Generate(); }
 
+        /// <summary>
+        /// Generates a new procedural image and resets the current iterations so the timer can continue.
+        /// </summary>
         int currentIteration = 0;
         void Generate()
         {
@@ -24,6 +30,9 @@ namespace Procedural_Caves
             Reset();
         }
 
+        /// <summary>
+        /// Resets the board to a new random initialisation.
+        /// </summary>
         void Reset()
         {
             board = new Board(pictureBox1.Width, pictureBox1.Height, (int)SizeNud.Value);
@@ -32,6 +41,11 @@ namespace Procedural_Caves
         }
 
         private void DelayNud_ValueChanged(object sender, EventArgs e) { timer1.Interval = (int)DelayNud.Value; }
+        /// <summary>
+        /// Advances the state of the board until the maximum number of iterations are reached.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (currentIteration >= IterationsNud.Value) return;
@@ -41,6 +55,11 @@ namespace Procedural_Caves
         }
 
         Bitmap currentBmp;
+        /// <summary>
+        /// Saves the currently held bitmap file to the user's pictures folder.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveButton_Click(object sender, EventArgs e)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -50,6 +69,9 @@ namespace Procedural_Caves
             //currentBmp.Save("../../../img.jpg", ImageFormat.Jpeg);
         }
 
+        /// <summary>
+        /// Renders the current board to a bitmap image which can be displayed/saved.
+        /// </summary>
         private void Render()
         {
             using (var bmp = new Bitmap(board.width, board.height))

@@ -54,7 +54,7 @@ namespace Procedural_Caves
         }
 
         /// <summary>
-        /// Connects cells to their 8 neighbours (wrapping around the edge of the screen if enabled)
+        /// Connects cells to their 8 neighbours (wrapping around the edge of the screen if enabled - generates less interesting caves)
         /// </summary>
         /// <param name="wrap"></param>
         private void ConnectNeighbours(bool wrap)

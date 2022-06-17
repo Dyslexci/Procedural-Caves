@@ -15,6 +15,9 @@ namespace Procedural_Caves
         public readonly List<Cell> neighbours = new List<Cell>();
         bool isWallNext;
 
+        /// <summary>
+        /// Calculates the state of the cell in the next iteration based on simple rules
+        /// </summary>
         public void NextState()
         {
             int liveNeighbours = neighbours.Where(x => x.isWall).Count();
