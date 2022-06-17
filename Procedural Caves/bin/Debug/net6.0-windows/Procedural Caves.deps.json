@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Procedural Caves/1.0.0": {
+        "runtime": {
+          "Procedural Caves.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Procedural Caves/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
