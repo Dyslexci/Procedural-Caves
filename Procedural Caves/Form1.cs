@@ -76,9 +76,9 @@ namespace Procedural_Caves
         {
             using (var bmp = new Bitmap(board.width, board.height))
             using (var gfx = Graphics.FromImage(bmp))
-            using (var brush = new SolidBrush(Color.LightGreen))
+            using (var brush = new SolidBrush(ColorTranslator.FromHtml("#2f3539")))
             {
-                gfx.Clear(ColorTranslator.FromHtml("#2f3539"));
+                gfx.Clear(Color.LightGreen);
                 var cellSize = new Size(board.cellSize, board.cellSize);
 
                 for (int col = 0; col < board.columns; col++)

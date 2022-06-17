@@ -22,6 +22,12 @@ namespace Procedural_Caves
         {
             int liveNeighbours = neighbours.Where(x => x.isWall).Count();
 
+            if(neighbours.Count <= 7)
+            {
+                isWallNext = true;
+                return;
+            }
+
             if(liveNeighbours == 4)
             {
                 isWallNext = isWall;

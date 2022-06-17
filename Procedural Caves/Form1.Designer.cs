@@ -140,7 +140,7 @@
             this.DensityNud.Size = new System.Drawing.Size(53, 23);
             this.DensityNud.TabIndex = 5;
             this.DensityNud.Value = new decimal(new int[] {
-            55,
+            45,
             0,
             0,
             0});
