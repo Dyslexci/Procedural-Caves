@@ -35,12 +35,14 @@ namespace Procedural_Caves
         /// </summary>
         void Reset()
         {
+            hasRemovedCaves = false;
             board = new Board(pictureBox1.Width, pictureBox1.Height, (int)SizeNud.Value);
             board.RandomInit((double)DensityNud.Value / 100);
             Render();
         }
 
         private void DelayNud_ValueChanged(object sender, EventArgs e) { timer1.Interval = (int)DelayNud.Value; }
+        bool hasRemovedCaves = false;
         /// <summary>
         /// Advances the state of the board until the maximum number of iterations are reached.
         /// </summary>
@@ -48,7 +50,18 @@ namespace Procedural_Caves
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (currentIteration >= IterationsNud.Value) return;
+            if (currentIteration >= IterationsNud.Value)
+            {
+                if(CheckboxRemoveCaverns.Checked && !hasRemovedCaves)
+                {
+                    hasRemovedCaves=true;
+                    board.DiscoverCaverns();
+                    board.Advance();
+                    Render();
+                    currentIteration--;
+                }
+                return;
+            }
             board.Advance();
             Render();
             currentIteration++;
@@ -77,6 +90,7 @@ namespace Procedural_Caves
             using (var bmp = new Bitmap(board.width, board.height))
             using (var gfx = Graphics.FromImage(bmp))
             using (var brush = new SolidBrush(ColorTranslator.FromHtml("#2f3539")))
+            using(var floodBrush = new SolidBrush(ColorTranslator.FromHtml("#4287f5")))
             {
                 gfx.Clear(Color.LightGreen);
                 var cellSize = new Size(board.cellSize, board.cellSize);
@@ -91,6 +105,12 @@ namespace Procedural_Caves
                             var cellLocation = new Point(col * board.cellSize, row * board.cellSize);
                             var cellRect = new Rectangle(cellLocation, cellSize);
                             gfx.FillRectangle(brush, cellRect);
+                        }
+                        if(cell.flaggedAsCavern)
+                        {
+                            var cellLocation = new Point(col * board.cellSize, row * board.cellSize);
+                            var cellRect = new Rectangle(cellLocation, cellSize);
+                            gfx.FillRectangle(floodBrush, cellRect);
                         }
                     }
                 }

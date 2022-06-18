@@ -42,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.IterationsNud = new System.Windows.Forms.NumericUpDown();
             this.pathLabel = new System.Windows.Forms.Label();
+            this.CheckboxRemoveCaverns = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.SizeNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DelayNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DensityNud)).BeginInit();
@@ -62,7 +63,7 @@
             // 
             this.SizeNud.Location = new System.Drawing.Point(92, 7);
             this.SizeNud.Minimum = new decimal(new int[] {
-            1,
+            3,
             0,
             0,
             0});
@@ -147,7 +148,7 @@
             // 
             // RegenerateButton
             // 
-            this.RegenerateButton.Location = new System.Drawing.Point(575, 7);
+            this.RegenerateButton.Location = new System.Drawing.Point(716, 7);
             this.RegenerateButton.Name = "RegenerateButton";
             this.RegenerateButton.Size = new System.Drawing.Size(75, 23);
             this.RegenerateButton.TabIndex = 6;
@@ -157,7 +158,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(656, 7);
+            this.SaveButton.Location = new System.Drawing.Point(797, 7);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 7;
@@ -172,7 +173,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(12, 36);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1117, 504);
+            this.pictureBox1.Size = new System.Drawing.Size(1117, 510);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
@@ -211,16 +212,27 @@
             // pathLabel
             // 
             this.pathLabel.AutoSize = true;
-            this.pathLabel.Location = new System.Drawing.Point(737, 11);
+            this.pathLabel.Location = new System.Drawing.Point(13, 560);
             this.pathLabel.Name = "pathLabel";
             this.pathLabel.Size = new System.Drawing.Size(0, 15);
             this.pathLabel.TabIndex = 11;
+            // 
+            // CheckboxRemoveCaverns
+            // 
+            this.CheckboxRemoveCaverns.AutoSize = true;
+            this.CheckboxRemoveCaverns.Location = new System.Drawing.Point(564, 8);
+            this.CheckboxRemoveCaverns.Name = "CheckboxRemoveCaverns";
+            this.CheckboxRemoveCaverns.Size = new System.Drawing.Size(146, 19);
+            this.CheckboxRemoveCaverns.TabIndex = 12;
+            this.CheckboxRemoveCaverns.Text = "Remove Small Caverns";
+            this.CheckboxRemoveCaverns.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1141, 552);
+            this.ClientSize = new System.Drawing.Size(1141, 586);
+            this.Controls.Add(this.CheckboxRemoveCaverns);
             this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.IterationsNud);
             this.Controls.Add(this.label4);
@@ -260,5 +272,6 @@
         private Label label4;
         private NumericUpDown IterationsNud;
         private Label pathLabel;
+        private CheckBox CheckboxRemoveCaverns;
     }
 }

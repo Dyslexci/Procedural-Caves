@@ -12,6 +12,7 @@ namespace Procedural_Caves
     class Cell
     {
         public bool isWall;
+        public bool flaggedAsCavern = false;
         public readonly List<Cell> neighbours = new List<Cell>();
         bool isWallNext;
 
@@ -28,7 +29,22 @@ namespace Procedural_Caves
                 return;
             }
 
-            if(liveNeighbours == 4)
+            if(isWall)
+            {
+                if(liveNeighbours < 4)
+                    isWallNext = false;
+                else
+                    isWallNext = true;
+            }
+            if(!isWall)
+            {
+                if(liveNeighbours > 4)
+                    isWallNext = true;
+                else
+                    isWallNext = false;
+            }
+
+/*            if(liveNeighbours == 4)
             {
                 isWallNext = isWall;
             } else if(liveNeighbours > 4)
@@ -37,12 +53,35 @@ namespace Procedural_Caves
             } else
             {
                 isWallNext = false;
+            }*/
+        }
+
+        public List<Cell> GetFloorNeighbours()
+        {
+            List<Cell> floorNeighbours = new List<Cell>();
+            foreach(var cell in neighbours)
+            {
+                if (!cell.isWall && !cell.flaggedAsCavern)
+                {
+                    floorNeighbours.Add(cell);
+                    cell.flaggedAsCavern = true;
+                }
+                    
             }
+            return floorNeighbours;
         }
 
         public void Advance()
         {
-            isWall = isWallNext;
+            if(flaggedAsCavern)
+            {
+                isWall = true;
+                flaggedAsCavern = false;
+            } else
+            {
+                isWall = isWallNext;
+            }
+            
         }
     }
 }

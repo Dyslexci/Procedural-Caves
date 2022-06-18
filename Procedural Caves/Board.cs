@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Procedural_Caves
 {
@@ -51,6 +52,56 @@ namespace Procedural_Caves
                 cell.NextState();
             foreach (var cell in cells)
                 cell.Advance();
+        }
+
+        List<List<Cell>> cavernsList = new List<List<Cell>>();
+        public void DiscoverCaverns()
+        {
+            foreach(var cell in cells)
+            {
+                if(!cell.isWall && !cell.flaggedAsCavern)
+                {
+                    cavernsList.Add(FloodFill(cell));
+                }
+            }
+            int largestCavernCellCount = 0;
+            List<Cell> largestCavern = new List<Cell>();
+            foreach(var cavern in cavernsList)
+            {
+                if(cavern.Count > largestCavernCellCount)
+                {
+                    largestCavernCellCount = cavern.Count;
+                    largestCavern.Clear();
+                    largestCavern.AddRange(cavern);
+                }
+            }
+            foreach(var cell in largestCavern)
+            {
+                cell.flaggedAsCavern = false;
+            }
+        }
+
+        public List<Cell> FloodFill(Cell initCell)
+        {
+            List<Cell> cavern = new List<Cell>();
+            List<Cell> cavernToReturn = new List<Cell>();
+            Cell node = initCell;
+            cavern.Add(node);
+            while(cavern.Count > 0)
+            {
+                Cell n = cavern.First();
+                if(!cavernToReturn.Contains(cavern.First()))
+                {
+                    cavernToReturn.Add(cavern.First());
+                }
+                cavern.RemoveAt(0);
+                if(!n.isWall)
+                {
+                    n.flaggedAsCavern = true;
+                    cavern.AddRange(n.GetFloorNeighbours());
+                }
+            }
+            return cavernToReturn;
         }
 
         /// <summary>
