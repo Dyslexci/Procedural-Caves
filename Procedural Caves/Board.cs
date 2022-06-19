@@ -20,13 +20,13 @@ namespace Procedural_Caves
         public int width { get { return columns * cellSize; } }
         public int height { get { return rows * cellSize; } }
 
-        public Board(int width, int height, int cellSize, bool wrap = true)
+        public Board(int width, int height, int cellSize, int floorConvert, int wallConvert, bool wrap = true)
         {
             this.cellSize = cellSize;
             cells = new Cell[width / cellSize, height / cellSize];
             for (int x = 0; x < columns; x++)
                 for (int y = 0; y < rows; y++)
-                    cells[x, y] = new Cell();
+                    cells[x, y] = new Cell(floorConvert, wallConvert);
 
             ConnectNeighbours(false);
         }

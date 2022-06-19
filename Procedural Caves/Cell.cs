@@ -16,6 +16,13 @@ namespace Procedural_Caves
         public readonly List<Cell> neighbours = new List<Cell>();
         bool isWallNext;
 
+        int floorConvert, wallConvert;
+        public Cell(int floorConvert, int wallConvert)
+        {
+            this.floorConvert = floorConvert;
+            this.wallConvert = wallConvert;
+        }
+
         /// <summary>
         /// Calculates the state of the cell in the next iteration based on simple rules
         /// </summary>
@@ -30,30 +37,9 @@ namespace Procedural_Caves
             }
 
             if(isWall)
-            {
-                if(liveNeighbours < 4)
-                    isWallNext = false;
-                else
-                    isWallNext = true;
-            }
+                isWallNext = (liveNeighbours < floorConvert) ? false : true;
             if(!isWall)
-            {
-                if(liveNeighbours > 4)
-                    isWallNext = true;
-                else
-                    isWallNext = false;
-            }
-
-/*            if(liveNeighbours == 4)
-            {
-                isWallNext = isWall;
-            } else if(liveNeighbours > 4)
-            {
-                isWallNext = true;
-            } else
-            {
-                isWallNext = false;
-            }*/
+                isWallNext = (liveNeighbours > wallConvert) ? true : false;
         }
 
         public List<Cell> GetFloorNeighbours()
@@ -77,11 +63,9 @@ namespace Procedural_Caves
             {
                 isWall = true;
                 flaggedAsCavern = false;
-            } else
-            {
-                isWall = isWallNext;
+                return;
             }
-            
+            isWall = isWallNext;
         }
     }
 }

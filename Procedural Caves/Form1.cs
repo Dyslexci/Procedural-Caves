@@ -36,7 +36,7 @@ namespace Procedural_Caves
         void Reset()
         {
             hasRemovedCaves = false;
-            board = new Board(pictureBox1.Width, pictureBox1.Height, (int)SizeNud.Value);
+            board = new Board(pictureBox1.Width, pictureBox1.Height, (int)SizeNud.Value, (int)FloorConvertNup.Value, (int)WallConvertNup.Value);
             board.RandomInit((double)DensityNud.Value / 100);
             Render();
         }
@@ -121,6 +121,18 @@ namespace Procedural_Caves
                     currentBmp.Dispose();
                 currentBmp = (Bitmap)bmp.Clone();
             }
+        }
+
+        private void WallConvertNup_Changed(object sender, EventArgs e)
+        {
+            if(WallConvertNup.Value < FloorConvertNup.Value)
+                WallConvertNup.Value = FloorConvertNup.Value;
+        }
+
+        private void FloorConvertNup_Changed(object sender, EventArgs e)
+        {
+            if (FloorConvertNup.Value > WallConvertNup.Value)
+                FloorConvertNup.Value = WallConvertNup.Value;
         }
     }
 }

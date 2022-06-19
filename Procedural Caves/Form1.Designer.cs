@@ -43,11 +43,17 @@
             this.IterationsNud = new System.Windows.Forms.NumericUpDown();
             this.pathLabel = new System.Windows.Forms.Label();
             this.CheckboxRemoveCaverns = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.FloorConvertNup = new System.Windows.Forms.NumericUpDown();
+            this.WallConvertNup = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SizeNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DelayNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DensityNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IterationsNud)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorConvertNup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WallConvertNup)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -171,9 +177,9 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 36);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 65);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1117, 510);
+            this.pictureBox1.Size = new System.Drawing.Size(1117, 520);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
@@ -211,8 +217,9 @@
             // 
             // pathLabel
             // 
+            this.pathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pathLabel.AutoSize = true;
-            this.pathLabel.Location = new System.Drawing.Point(13, 560);
+            this.pathLabel.Location = new System.Drawing.Point(13, 599);
             this.pathLabel.Name = "pathLabel";
             this.pathLabel.Size = new System.Drawing.Size(0, 15);
             this.pathLabel.TabIndex = 11;
@@ -227,11 +234,79 @@
             this.CheckboxRemoveCaverns.Text = "Remove Small Caverns";
             this.CheckboxRemoveCaverns.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Floor Conversion Value:";
+            // 
+            // FloorConvertNup
+            // 
+            this.FloorConvertNup.Location = new System.Drawing.Point(149, 33);
+            this.FloorConvertNup.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.FloorConvertNup.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.FloorConvertNup.Name = "FloorConvertNup";
+            this.FloorConvertNup.Size = new System.Drawing.Size(53, 23);
+            this.FloorConvertNup.TabIndex = 14;
+            this.FloorConvertNup.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.FloorConvertNup.ValueChanged += new System.EventHandler(this.FloorConvertNup_Changed);
+            // 
+            // WallConvertNup
+            // 
+            this.WallConvertNup.Location = new System.Drawing.Point(341, 35);
+            this.WallConvertNup.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.WallConvertNup.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.WallConvertNup.Name = "WallConvertNup";
+            this.WallConvertNup.Size = new System.Drawing.Size(53, 23);
+            this.WallConvertNup.TabIndex = 15;
+            this.WallConvertNup.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.WallConvertNup.ValueChanged += new System.EventHandler(this.WallConvertNup_Changed);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(208, 35);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 15);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Wall Conversion Value:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1141, 586);
+            this.ClientSize = new System.Drawing.Size(1141, 625);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.WallConvertNup);
+            this.Controls.Add(this.FloorConvertNup);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.CheckboxRemoveCaverns);
             this.Controls.Add(this.pathLabel);
             this.Controls.Add(this.IterationsNud);
@@ -252,6 +327,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DensityNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IterationsNud)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorConvertNup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WallConvertNup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +350,9 @@
         private NumericUpDown IterationsNud;
         private Label pathLabel;
         private CheckBox CheckboxRemoveCaverns;
+        private Label label5;
+        private NumericUpDown FloorConvertNup;
+        private NumericUpDown WallConvertNup;
+        private Label label6;
     }
 }
